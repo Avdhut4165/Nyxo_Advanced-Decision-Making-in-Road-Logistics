@@ -1,0 +1,279 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AdaptiveLog AI - Intelligent Logistics Platform</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <!-- Login Screen -->
+    <div class="login-screen" id="loginScreen">
+      <div class="login-card">
+        <div class="login-logo">
+          <div class="login-logo-icon">
+            <i class="fas fa-shipping-fast"></i>
+          </div>
+          <div>
+            <h1 class="login-title">AdaptiveLog AI</h1>
+            <p class="login-subtitle">
+              Intelligent Logistics Optimization Platform
+            </p>
+          </div>
+        </div>
+
+        <p style="margin-bottom: 30px; color: var(--gray-color)">
+          Sign in with Google to access the AI-powered logistics dashboard
+        </p>
+
+        <button class="google-login-btn" id="googleSignInBtn">
+          <i class="fab fa-google"></i>
+          <span>Sign in with Google</span>
+        </button>
+
+        <div class="login-features">
+          <div class="feature-item">
+            <i class="fas fa-brain"></i>
+            <h4>AI-Powered Optimization</h4>
+            <p>Continuous real-time route & load optimization</p>
+          </div>
+          <div class="feature-item">
+            <i class="fas fa-gas-pump"></i>
+            <h4>Fuel Cost Reduction</h4>
+            <p>Intelligent routing to minimize fuel expenses</p>
+          </div>
+          <div class="feature-item">
+            <i class="fas fa-tachometer-alt"></i>
+            <h4>Real-time Analytics</h4>
+            <p>Live tracking and performance metrics</p>
+          </div>
+          <div class="feature-item">
+            <i class="fas fa-route"></i>
+            <h4>Empty Mile Reduction</h4>
+            <p>Smart backhaul matching to eliminate empty returns</p>
+          </div>
+        </div>
+
+        <p
+          style="margin-top: 30px; font-size: 0.9rem; color: var(--gray-color)"
+        >
+          <i class="fas fa-lock"></i> Your data is secure and encrypted
+        </p>
+      </div>
+    </div>
+
+    <!-- Main Dashboard -->
+    <div class="dashboard" id="dashboard">
+      <header>
+        <nav class="navbar">
+          <div class="logo">
+            <div class="logo-icon">
+              <i class="fas fa-shipping-fast"></i>
+            </div>
+            <span>AdaptiveLog AI</span>
+          </div>
+
+          <div class="user-section">
+            <div class="notification">
+              <i class="fas fa-bell"></i>
+              <div class="notification-badge">3</div>
+            </div>
+            <div class="user-info" id="userInfo">
+              <div class="user-avatar" id="userAvatar">JD</div>
+              <div>
+                <div class="user-name" id="userName">John Driver</div>
+                <div class="user-email" id="userEmail">
+                  john.driver@adaptive-logistics.com
+                </div>
+              </div>
+              <i class="fas fa-chevron-down"></i>
+            </div>
+          </div>
+        </nav>
+      </header>
+
+      <div class="dashboard-container">
+        <!-- Sidebar -->
+        <div class="sidebar">
+          <div class="sidebar-section">
+            <div class="sidebar-title">
+              <i class="fas fa-tachometer-alt"></i> Fleet Overview
+            </div>
+            <ul class="sidebar-menu">
+              <a href="#" class="menu-item active">
+                <div class="menu-icon">
+                  <i class="fas fa-tachometer-alt"></i>
+                </div>
+                <span>Dashboard</span>
+              </a>
+              <a href="#" class="menu-item">
+                <div class="menu-icon"><i class="fas fa-truck"></i></div>
+                <span>All Vehicles</span>
+              </a>
+              <a href="#" class="menu-item">
+                <div class="menu-icon">
+                  <i class="fas fa-map-marked-alt"></i>
+                </div>
+                <span>Live Tracking</span>
+              </a>
+              <a href="#" class="menu-item">
+                <div class="menu-icon"><i class="fas fa-box-open"></i></div>
+                <span>Load Management</span>
+              </a>
+            </ul>
+          </div>
+
+          <div class="sidebar-section">
+            <div class="sidebar-title">
+              <i class="fas fa-brain"></i> AI Agent Controls
+            </div>
+            <ul class="sidebar-menu">
+              <a href="#" class="menu-item">
+                <div class="menu-icon"><i class="fas fa-sliders-h"></i></div>
+                <span>Optimization Settings</span>
+              </a>
+              <a href="#" class="menu-item">
+                <div class="menu-icon"><i class="fas fa-bolt"></i></div>
+                <span>Real-time Actions</span>
+              </a>
+              <a href="#" class="menu-item">
+                <div class="menu-icon"><i class="fas fa-chart-line"></i></div>
+                <span>Performance Analytics</span>
+              </a>
+              <a href="#" class="menu-item">
+                <div class="menu-icon"><i class="fas fa-cog"></i></div>
+                <span>System Settings</span>
+              </a>
+            </ul>
+          </div>
+
+          <div class="sidebar-section">
+            <div class="sidebar-title">
+              <i class="fas fa-bolt"></i> Quick Actions
+            </div>
+            <button
+              class="btn btn-primary"
+              style="width: 100%; margin-bottom: 12px"
+            >
+              <i class="fas fa-plus-circle"></i> Add New Load
+            </button>
+            <button class="btn btn-outline" style="width: 100%">
+              <i class="fas fa-sync-alt"></i> Run AI Optimization
+            </button>
+          </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+          <!-- Stats Cards -->
+          <div class="stats-grid">
+            <div class="stat-card">
+              <div class="stat-header">
+                <div class="stat-title">Fleet Utilization</div>
+                <div class="stat-icon">
+                  <i class="fas fa-truck-loading"></i>
+                </div>
+              </div>
+              <div class="stat-value" id="fleetUtilization">87%</div>
+              <div class="stat-change positive">
+                <i class="fas fa-arrow-up"></i>
+                <span>+5% from last week</span>
+              </div>
+            </div>
+
+            <div class="stat-card">
+              <div class="stat-header">
+                <div class="stat-title">Empty Miles Reduced</div>
+                <div class="stat-icon">
+                  <i class="fas fa-road"></i>
+                </div>
+              </div>
+              <div class="stat-value" id="emptyMiles">42%</div>
+              <div class="stat-change positive">
+                <i class="fas fa-arrow-up"></i>
+                <span>+12% from last month</span>
+              </div>
+            </div>
+
+            <div class="stat-card">
+              <div class="stat-header">
+                <div class="stat-title">Avg. Revenue per Trip</div>
+                <div class="stat-icon">
+                  <i class="fas fa-dollar-sign"></i>
+                </div>
+              </div>
+              <div class="stat-value" id="revenueTrip">$1,240</div>
+              <div class="stat-change positive">
+                <i class="fas fa-arrow-up"></i>
+                <span>+8% from last week</span>
+              </div>
+            </div>
+
+            <div class="stat-card">
+              <div class="stat-header">
+                <div class="stat-title">AI Recommendations</div>
+                <div class="stat-icon">
+                  <i class="fas fa-robot"></i>
+                </div>
+              </div>
+              <div class="stat-value" id="aiRecommendations">14</div>
+              <div class="stat-change">
+                <span>3 require immediate action</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Fleet Map -->
+          <div class="fleet-map-container">
+            <div class="section-header">
+              <h2 class="section-title">
+                <i class="fas fa-map-marked-alt"></i> Live Fleet Tracking &
+                Analytics
+              </h2>
+              <div>
+                <button class="btn btn-outline">
+                  <i class="fas fa-filter"></i> Filter
+                </button>
+                <button
+                  class="btn btn-primary"
+                  style="margin-left: 10px"
+                  id="refreshBtn"
+                >
+                  <i class="fas fa-sync-alt"></i> Refresh
+                </button>
+              </div>
+            </div>
+
+            <div id="map"></div>
+
+            <div class="section-header">
+              <h3 class="section-title">
+                <i class="fas fa-truck"></i> Truck Performance Analytics
+              </h3>
+            </div>
+
+            <div class="truck-details-grid" id="trucksGrid">
+              <!-- Truck cards will be populated by JavaScript -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="backend.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
